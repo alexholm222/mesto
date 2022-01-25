@@ -4,8 +4,7 @@
   grid-template-columns: repeat(3, max-content);
   grid-template-areas:
   "avatar name button-edit"
-  "avatar name-subline name-subline"
-  ;
+  "avatar name-subline name-subline";
   margin: 37px 0 48px;
   color: #FFFFFF;
   row-gap: 8px;
@@ -25,8 +24,7 @@
     grid-template-areas:
     "avatar avatar"
     "name button-edit"
-    "name-subline name-subline"
-    ;
+    "name-subline name-subline";
     justify-content: center;
     row-gap: 14px;
     column-gap: 10px;
