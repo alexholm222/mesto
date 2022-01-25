@@ -1,0 +1,17 @@
+.popup__button-save {
+  background-image: url(../../../images/Submit-Button.svg);
+  width: 358px;
+  height: 50px;
+  margin: 18px 36px;
+  padding: 0;
+  border: none;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__button-save {
+    background-image: url(../../../images/Submit-Button-mobile.svg);
+    width: 238px;
+    height: 46px;
+    margin: 15px 22px 25px;
+  }
+}

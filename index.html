@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Mesto</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
+
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img src="images/avatar.jpg" class="profile__avatar" alt="Аватар пользователя">
+          <h2 class="profile__name">Жак-Ив Кусто</h2>
+          <p class="profile__name-subline">Исследователь океана</p>
+          <button class="profile__button-edit button-effect"></button>
+        </div>
+        <button class="profile__button-add button-effect"></button>
+      </section>
+
+      <ul class="gallery">
+        <li class="card">
+          <img src="images/karachevsk.jpg" class="card__image">
+          <div class="card__description">
+            <h2 class="card__title">Карачаевск</h2>
+            <div class="card__like button-effect"></div>
+          </div>
+        </li>
+        <li class="card">
+          <img src="images/elbrus.jpg" class="card__image">
+          <div class="card__description">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <div class="card__like button-effect"></div>
+          </div>
+        </li>
+        <li class="card">
+          <img src="images/domba.jpg" class="card__image">
+          <div class="card__description">
+            <h2 class="card__title">Домбай</h2>
+            <div class="card__like button-effect"></div>
+          </div>
+        </li>
+        <li class="card">
+          <img src="images/elbrus.jpg" class="card__image">
+          <div class="card__description">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <div class="card__like button-effect"></div>
+          </div>
+        </li>
+        <li class="card">
+          <img src="images/domba.jpg" class="card__image">
+          <div class="card__description">
+            <h2 class="card__title">Домбай</h2>
+            <div class="card__like button-effect"></div>
+          </div>
+        </li>
+        <li class="card">
+          <img src="images/karachevsk.jpg" class="card__image">
+          <div class="card__description">
+            <h2 class="card__title">Карачаево-Черкеск</h2>
+            <div class="card__like button-effect"></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="popup">
+        <div class="popup__container">
+          <button class="popup__button-close button-effect"></button>
+          <div class="popup__form">
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__input">
+              <input type="text" class="popup__name-input">
+              <input type="text" class="popup__job-input">
+              <button type="submit" class="popup__button-save button-effect"></button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <h1 class="footer__copyright">&#169; 2022 Mesto Russia</h1>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
