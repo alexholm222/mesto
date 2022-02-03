@@ -26,7 +26,7 @@
     "name button-edit"
     "name-subline name-subline";
     justify-content: center;
-    row-gap: 14px;
+    row-gap: 0;
     column-gap: 10px;
     margin-bottom: 36px;
   }

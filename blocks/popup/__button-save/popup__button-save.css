@@ -1,17 +1,29 @@
 .popup__button-save {
-  background-image: url(../../../images/Submit-Button.svg);
+  background-color: black;
+  color: white;
   width: 358px;
   height: 50px;
   margin: 18px 36px;
   padding: 0;
   border: none;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+
+.popup__button-save:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 540px) {
   .popup__button-save {
-    background-image: url(../../../images/Submit-Button-mobile.svg);
     width: 238px;
     height: 46px;
     margin: 15px 22px 25px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

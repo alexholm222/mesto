@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
-<body>
+<body class="site">
   <div class="page">
     <header class="header">
       <div class="header__logo"></div>
@@ -17,78 +17,78 @@
       <section class="profile">
         <div class="profile__info">
           <img src="images/avatar.jpg" class="profile__avatar" alt="Аватар пользователя">
-          <h2 class="profile__name">Жак-Ив Кусто</h2>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__name-subline">Исследователь океана</p>
-          <button class="profile__button-edit button-effect"></button>
+          <button type="button" class="profile__button-edit button-effect"></button>
         </div>
-        <button class="profile__button-add button-effect"></button>
+        <button type="button" class="profile__button-add button-effect"></button>
       </section>
 
-      <ul class="gallery">
-        <li class="card">
-          <img src="images/karachevsk.jpg" class="card__image" alt="Храм в горах">
-          <div class="card__description">
-            <h2 class="card__title">Карачаевск</h2>
-            <div class="card__like button-effect"></div>
-          </div>
-        </li>
-        <li class="card">
-          <img src="images/elbrus.jpg" class="card__image" alt="закат над Эльбрусом">
-          <div class="card__description">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <div class="card__like button-effect"></div>
-          </div>
-        </li>
-        <li class="card">
-          <img src="images/domba.jpg" class="card__image" alt="Горы Домбая">
-          <div class="card__description">
-            <h2 class="card__title">Домбай</h2>
-            <div class="card__like button-effect"></div>
-          </div>
-        </li>
-        <li class="card">
-          <img src="images/elbrus.jpg" class="card__image" alt="закат над Эльбрусом">
-          <div class="card__description">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <div class="card__like button-effect"></div>
-          </div>
-        </li>
-        <li class="card">
-          <img src="images/domba.jpg" class="card__image" alt="Горы Домбая">
-          <div class="card__description">
-            <h2 class="card__title">Домбай</h2>
-            <div class="card__like button-effect"></div>
-          </div>
-        </li>
-        <li class="card">
-          <img src="images/karachevsk.jpg" class="card__image" alt="Храм в горах">
-          <div class="card__description">
-            <h2 class="card__title">Карачаево-Черкеск</h2>
-            <div class="card__like button-effect"></div>
-          </div>
-        </li>
-      </ul>
-
-      <div class="popup">
-        <div class="popup__container">
-          <button class="popup__button-close button-effect"></button>
-          <div class="popup__form">
-            <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__input">
-              <input type="text" class="popup__name-input">
-              <input type="text" class="popup__job-input">
-              <button type="submit" class="popup__button-save button-effect"></button>
-            </form>
-          </div>
-        </div>
-      </div>
-
+      <section class="gallery">
+        <ul class="gallery__cards">
+          <li class="card">
+            <img src="images/karachevsk.jpg" class="card__image" alt="Храм в горах">
+            <div class="card__description">
+              <h2 class="card__title">Карачаевск</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="images/elbrus.jpg" class="card__image" alt="закат над Эльбрусом">
+            <div class="card__description">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="images/domba.jpg" class="card__image" alt="Горы Домбая">
+            <div class="card__description">
+              <h2 class="card__title">Домбай</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="images/elbrus.jpg" class="card__image" alt="закат над Эльбрусом">
+            <div class="card__description">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="images/domba.jpg" class="card__image" alt="Горы Домбая">
+            <div class="card__description">
+              <h2 class="card__title">Домбай</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="images/karachevsk.jpg" class="card__image" alt="Храм в горах">
+            <div class="card__description">
+              <h2 class="card__title">Карачаево-Черкеск</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
     </main>
 
     <footer class="footer">
-      <h1 class="footer__copyright">&#169; 2022 Mesto Russia</h1>
+      <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
+
+    <div class="popup">
+      <button type="button" class="popup__button-close button-effect"></button>
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="popup" class="popup__form">
+          <input type="text" name="input-name" required placeholder="Имя" class="popup__input popup__input_content_name">
+          <input type="text" name="input-job" required placeholder="Род деятельности" class="popup__input popup__input_content_job">
+          <button type="submit" class="popup__button-save">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
   </div>
-  <script src="index.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

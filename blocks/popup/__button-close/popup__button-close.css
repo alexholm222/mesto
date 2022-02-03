@@ -3,17 +3,18 @@
   background-size: contain;
   width: 32px;
   height: 32px;
-  position: absolute;
-  right: 0;
-  top: 0;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   padding: 0;
+  margin-left: 478px;
+  margin-bottom: 8px;
 }
 
 @media screen and (max-width: 540px) {
   .popup__button-close {
     width: 20px;
     height: 20px;
+    margin-bottom: 16px;
+    margin-left: 262px;
   }
 }
