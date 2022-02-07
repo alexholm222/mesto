@@ -83,10 +83,11 @@ initialCards.forEach(function (element) {
 //выбор данных для карточки из масива
   cardElement.querySelector('.card__title').textContent = element.name;
   cardElement.querySelector('.card__image').src = element.link;
+  cardElement.querySelector('.card__image').alt = element.name;
 //выбор данных из масива для попапа с картинкой
   cardElement.querySelector('.popup-card__title').textContent = element.name;
   cardElement.querySelector('.popup-card__image').src = element.link;
-
+  cardElement.querySelector('.popup-card__image').alt = element.name;
   const popupImg = cardElement.querySelector('.popup-card');
 //Слушатели для кнопки лайка и кнопки удаления карточки
   cardElement.querySelector('.card__like').addEventListener('click', cardLike);
@@ -109,9 +110,11 @@ function formSubmitHandlerCard (evt) {
 //данные для карточки вводимые пользователем в форме
   cardElement.querySelector('.card__title').textContent = cardTitle.value;
   cardElement.querySelector('.card__image').src = cardLink.value;
+  cardElement.querySelector('.card__image').alt = cardTitle.value;
 //данные для попапа с катинкой вводимые пользователем в форме
   cardElement.querySelector('.popup-card__title').textContent = cardTitle.value;
   cardElement.querySelector('.popup-card__image').src = cardLink.value;
+  cardElement.querySelector('.popup-card__image').alt = cardTitle.value;
 
   const popupImg = cardElement.querySelector('.popup-card');
 //Слушатели для кнопки лайка и кнопки удаления карточки
