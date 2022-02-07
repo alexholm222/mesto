@@ -26,48 +26,7 @@
 
       <section class="gallery">
         <ul class="gallery__cards">
-          <li class="card">
-            <img src="images/karachevsk.jpg" class="card__image" alt="Храм в горах">
-            <div class="card__description">
-              <h2 class="card__title">Карачаевск</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="images/elbrus.jpg" class="card__image" alt="закат над Эльбрусом">
-            <div class="card__description">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="images/domba.jpg" class="card__image" alt="Горы Домбая">
-            <div class="card__description">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="images/elbrus.jpg" class="card__image" alt="закат над Эльбрусом">
-            <div class="card__description">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="images/domba.jpg" class="card__image" alt="Горы Домбая">
-            <div class="card__description">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="images/karachevsk.jpg" class="card__image" alt="Храм в горах">
-            <div class="card__description">
-              <h2 class="card__title">Карачаево-Черкеск</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
+
         </ul>
       </section>
     </main>
@@ -76,21 +35,50 @@
       <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
-      <div class="popup__content">
-        <button type="button" class="popup__button-close button-effect"></button>
-        <div class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="popup" class="popup__form">
-            <input type="text" name="input-name" required placeholder="Имя" class="popup__input popup__input_content_name">
-            <input type="text" name="input-job" required placeholder="Род деятельности" class="popup__input popup__input_content_job">
-            <button type="submit" class="popup__button-save">Сохранить</button>
-          </form>
-        </div>
+    <div class="popup popup_content_profile">
+      <div class="popup__container">
+        <button type="button" class="popup__button-close popup__button-close_profile button-effect"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="popup" class="popup__form popup__form_profile">
+          <input type="text" name="input-name" required placeholder="Имя" class="popup__input popup__input_content_name">
+          <input type="text" name="input-job" required placeholder="Род деятельности" class="popup__input popup__input_content_job">
+          <button type="submit" class="popup__button-save">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_content_card">
+      <div class="popup__container">
+        <button type="button" class="popup__button-close popup__button-close_card button-effect"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form name="popup" class="popup__form popup__form_card">
+          <input type="text" name="input-title" required placeholder="Название" class="popup__input popup__input_content_title">
+          <input type="text" name="input-link" required placeholder="Ссылка на картинку" class="popup__input popup__input_content_link">
+          <button type="submit" class="popup__button-save">Сохранить</button>
+        </form>
       </div>
     </div>
 
   </div>
+
+    <template class="card-template">
+      <li class="card">
+        <img src="" class="card__image">
+        <button type="button" class="card__delete button-effect"></button>
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like"></button>
+        </div>
+        <div class="card__overlay"></div>
+        <div class="popup-card">
+          <div class="popup-card__container">
+            <img src="" class="popup-card__image">
+            <button type="button" class="popup-card__button button-effect"></button>
+            <h2 class="popup-card__title"></h2>
+          </div>
+        </div>
+      </li>
+    </template>
   <script src="js/index.js"></script>
 </body>
 </html>
