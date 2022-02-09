@@ -1,6 +1,5 @@
 const editButton = document.querySelector('.profile__button-edit');
 const addButton = document.querySelector('.profile__button-add');
-
 const popUpProfile = document.querySelector('.popup_content_profile');
 const popUpCard = document.querySelector('.popup_content_card');
 const closeButtonProfile = document.querySelector('.popup__button-close_profile');
@@ -14,7 +13,8 @@ const profileSubline = document.querySelector('.profile__name-subline');
 const cardTitle = document.querySelector('.popup__input_content_title');
 const cardLink = document.querySelector('.popup__input_content_link');
 const cardsContainer = document.querySelector('.gallery__cards');
-
+const popupImg = document.querySelector('.popup-card');
+const buttonImgClose = document.querySelector('.popup-card__button');
 
 const initialCards = [
   {
@@ -80,18 +80,19 @@ function createCard (name, link) {
   cardElement.querySelector('.card__title').textContent = name;
   cardElement.querySelector('.card__image').src = link;
   cardElement.querySelector('.card__image').alt = name;
-  //данные для попапа с катинкой
-  cardElement.querySelector('.popup-card__title').textContent = name;
-  cardElement.querySelector('.popup-card__image').src = link;
-  cardElement.querySelector('.popup-card__image').alt = name;
-
-  const popupImg = cardElement.querySelector('.popup-card');
   //Слушатели для кнопки лайка и кнопки удаления карточки
   cardElement.querySelector('.card__like').addEventListener('click', cardLike);
   cardElement.querySelector('.card__delete').addEventListener('click', cardDelete);
-  //Слушатели для открытия попапа с картинкой и закрытия
-  cardElement.querySelector('.card__overlay').addEventListener('click', () => openPopup(popupImg));
-  cardElement.querySelector('.popup-card__button').addEventListener('click', () => closePopup(popupImg));
+
+  //Слушатель для открытия попапа
+  cardElement.querySelector('.card__overlay').addEventListener('click', () => {
+    //данные для попапа с катинкой
+    document.querySelector('.popup-card__title').textContent = name;
+    document.querySelector('.popup-card__image').src = link;
+    document.querySelector('.popup-card__image').alt = name;
+    //открытие попапа
+    openPopup(popupImg);
+  });
   return cardElement
 }
 
@@ -118,7 +119,7 @@ closeButtonProfile.addEventListener('click', () => closePopup(popUpProfile));
 closeButtonCard.addEventListener('click', () => closePopup(popUpCard));
 formElementProfile.addEventListener('submit', formSubmitHandler);
 formElementCard.addEventListener('submit', formSubmitHandlerCard);
-
+buttonImgClose.addEventListener('click', () => closePopup(popupImg));
 
 
 
