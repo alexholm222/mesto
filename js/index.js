@@ -116,14 +116,34 @@ function formSubmitHandlerCard (evt) {
   closePopup(popUpCard);
   formElementCard.reset();
 }
+//функция закрытия попапа по клику на оверлей
+function popupCloseOverlay() {
+  const popUp = Array.from(document.querySelectorAll('.popup'));
+  popUp.forEach((popupElement) => {
+    popupElement.addEventListener('mousedown', (evt) => {
+      if (evt.target === evt.currentTarget) {
+        closePopup(evt.target);
+      }
+    })
+  })
+};
+//функция закрытия попапа по нажатию Escape
+function popupCloseEscape (popup) {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+    }
+  })
+};
 
 editButton.addEventListener('click', () => {
   modPopupProfile();
-  toggleButtonState(inputProfileArr, buttonSaveProfile, validationConfig);
+  resetValidation(inputProfileArr, buttonSaveProfile, formElementProfile);
 });
 addButton.addEventListener('click', () => {
   openPopup(popUpCard);
-  toggleButtonState(inputCardArr, buttonSaveCard, validationConfig);
+  resetValidation(inputCardArr, buttonSaveCard, formElementCard);
+  formElementCard.reset();
 });
 closeButtonProfile.addEventListener('click', () => closePopup(popUpProfile));
 closeButtonCard.addEventListener('click', () => closePopup(popUpCard));
@@ -131,9 +151,7 @@ formElementProfile.addEventListener('submit', formSubmitHandler);
 formElementCard.addEventListener('submit', formSubmitHandlerCard);
 buttonImgClose.addEventListener('click', () => closePopup(popupImg));
 
-
-
-
-
-
-
+popupCloseOverlay();
+popupCloseEscape (popUpProfile);
+popupCloseEscape (popUpCard);
+popupCloseEscape (popupImg);
