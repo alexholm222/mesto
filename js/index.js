@@ -15,6 +15,10 @@ const cardLink = document.querySelector('.popup__input_content_link');
 const cardsContainer = document.querySelector('.gallery__cards');
 const popupImg = document.querySelector('.popup-card');
 const buttonImgClose = document.querySelector('.popup-card__button');
+const buttonSaveCard = document.querySelector('.popup__button-save_card');
+const buttonSaveProfile = document.querySelector('.popup__button-save_profile');
+const inputCardArr = Array.from(document.querySelectorAll('.popup__input_card'));
+const inputProfileArr = Array.from(document.querySelectorAll('.popup__input_profile'));
 
 const initialCards = [
   {
@@ -113,8 +117,14 @@ function formSubmitHandlerCard (evt) {
   formElementCard.reset();
 }
 
-editButton.addEventListener('click', modPopupProfile);
-addButton.addEventListener('click', () => openPopup(popUpCard));
+editButton.addEventListener('click', () => {
+  modPopupProfile();
+  toggleButtonState(inputProfileArr, buttonSaveProfile, validationConfig);
+});
+addButton.addEventListener('click', () => {
+  openPopup(popUpCard);
+  toggleButtonState(inputCardArr, buttonSaveCard, validationConfig);
+});
 closeButtonProfile.addEventListener('click', () => closePopup(popUpProfile));
 closeButtonCard.addEventListener('click', () => closePopup(popUpCard));
 formElementProfile.addEventListener('submit', formSubmitHandler);
