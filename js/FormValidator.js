@@ -15,38 +15,74 @@ export class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-    this._formElement = formElement;
+    this._formElement = document.querySelector(formElement);
+    this._buttonSelector = this._formElement.querySelector(this._submitButtonSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
-
+  //функция появления подсказок при ошибке под полем ввода
   _showInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(`.${inputElement}-error`);
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
-    errorElement.textContent = errorMessage;
+    errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._errorClass);
   }
+  // функция скрывающая подсказки под полем ввода
   _hideInputError (inputElement) {
-    const errorElement = this._formElement.querySelector(`.${inputElement}-error`);
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
     errorElement.textContent = '';
   };
-
+  //функция волидации поля ввода (при ошибке показывает подсказку)
   _checkInputValidity(inputElement) {
-    if (inputElement.validity.valid) {
-      showInputError(inputElement);
+    if (!inputElement.validity.valid) {
+      this._showInputError(inputElement);
     } else {
-      hideInputError(inputElement);
+      this._hideInputError(inputElement);
     }
   };
-
-  setEventListeners () {
-    console.log(this._formElement)
-    console.log(this._inputSelector)
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    console.log(this._inputList)
+  //функция валидации каждого поля ввода в форме
+  _setEventListeners () {
+    this._toggleButtonState (this._inputList)
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', this._checkInputValidity(inputElement));
+      inputElement.addEventListener('input',  () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState (this._inputList);
+      })
     });
   };
+  //функция валидации формы
+  enableValidation () {
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      });
+      this._setEventListeners();
+      this._resetValidation()
+  }
+  //функция проверяющая что все поля ввода в форме валидны, если хотя бы одно поле не валидно
+  //принимает значение true, если все поля валидны то false
+  _hasInvalidInput () {
+    return this._inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+    });
+  }
+  //Функция делающая кнопку отправки не активной если хотя бы одно из полей формы не валидно
+  _toggleButtonState ()  {
+    if (this._hasInvalidInput(this._inputList) === true) {
+      this._buttonSelector.classList.add(this._inactiveButtonClass);
+      this._buttonSelector.setAttribute('disabled', '');
+    }
+    else {
+      this._buttonSelector.classList.remove(this._inactiveButtonClass);
+      this._buttonSelector.removeAttribute('disabled', '');
+    }
+  }
+  //функция сброса валидации (после обьявления метода вызываем его в конце функции валидации формы)
+  _resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
 }
 

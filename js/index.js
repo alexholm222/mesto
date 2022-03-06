@@ -18,10 +18,6 @@ const cardTitle = document.querySelector('.popup__input_content_title');
 const cardLink = document.querySelector('.popup__input_content_link');
 const cardsContainer = document.querySelector('.gallery__cards');
 const buttonImgClose = document.querySelector('.popup-card__button');
-const buttonSaveCard = document.querySelector('.popup__button-save_card');
-const buttonSaveProfile = document.querySelector('.popup__button-save_profile');
-const inputCardArr = Array.from(document.querySelectorAll('.popup__input_card'));
-const inputProfileArr = Array.from(document.querySelectorAll('.popup__input_profile'));
 const EscCode = 'Escape';
 const popUp = Array.from(document.querySelectorAll('.popup'));
 
@@ -94,11 +90,18 @@ function popupCloseEscape() {
 
 editButton.addEventListener('click', () => {
   modPopupProfile();
-  //resetValidation(inputProfileArr, buttonSaveProfile, formElementProfile);
+  //создаем класс валидации нужной формы и вызываем публичную функцию валидации
+  //(функция валидации включает функцию сброса валидации)
+  const validateProfile = new FormValidator (validationConfig, '.popup__form_profile');
+  validateProfile.enableValidation();
+
 });
 addButton.addEventListener('click', () => {
   openPopup(popUpCard);
- // resetValidation(inputCardArr, buttonSaveCard, formElementCard);
+   //создаем класс валидации нужной формы и вызываем публичную функцию валидации
+  //(функция валидации включает функцию сброса валидации)
+  const validateCard = new FormValidator (validationConfig, '.popup__form_card');
+  validateCard.enableValidation();
   formElementCard.reset();
 });
 closeButtonProfile.addEventListener('click', () => closePopup(popUpProfile));
@@ -111,5 +114,6 @@ popupCloseOverlay();
 popupCloseEscape();
 
 
-const validdd = new FormValidator (validationConfig, '.popup__form_profile');
-validdd.setEventListeners()
+
+
+
