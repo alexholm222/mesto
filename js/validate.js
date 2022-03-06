@@ -1,4 +1,4 @@
-const validationConfig = {
+export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button-save',
@@ -7,7 +7,7 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 }
 //функция появления подсказок при ошибке под полем ввода
-const showInputError = (formElement, inputElement, errorMessage, validationConfig) => {
+/* const showInputError = (formElement, inputElement, errorMessage, validationConfig) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(validationConfig.inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -79,4 +79,6 @@ function resetValidation(inputList, buttonElement, formElement) {
   });
 }
 enableValidation(validationConfig);
+ */
+
 
