@@ -16,7 +16,7 @@ export class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._formElement = document.querySelector(formElement);
-    this._buttonSelector = this._formElement.querySelector(this._submitButtonSelector);
+    this._button = this._formElement.querySelector(this._submitButtonSelector);
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
   //функция появления подсказок при ошибке под полем ввода
@@ -57,7 +57,6 @@ export class FormValidator {
       evt.preventDefault();
       });
       this._setEventListeners();
-      this._resetValidation()
   }
   //функция проверяющая что все поля ввода в форме валидны, если хотя бы одно поле не валидно
   //принимает значение true, если все поля валидны то false
@@ -69,16 +68,16 @@ export class FormValidator {
   //Функция делающая кнопку отправки не активной если хотя бы одно из полей формы не валидно
   _toggleButtonState ()  {
     if (this._hasInvalidInput(this._inputList) === true) {
-      this._buttonSelector.classList.add(this._inactiveButtonClass);
-      this._buttonSelector.setAttribute('disabled', '');
+      this._button.classList.add(this._inactiveButtonClass);
+      this._button.setAttribute('disabled', '');
     }
     else {
-      this._buttonSelector.classList.remove(this._inactiveButtonClass);
-      this._buttonSelector.removeAttribute('disabled', '');
+      this._button.classList.remove(this._inactiveButtonClass);
+      this._button.removeAttribute('disabled', '');
     }
   }
-  //функция сброса валидации (после обьявления метода вызываем его в конце функции валидации формы)
-  _resetValidation() {
+  //функция сброса валидации (публичный метод)
+  resetValidation() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);

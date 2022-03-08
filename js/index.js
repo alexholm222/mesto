@@ -1,13 +1,10 @@
-import {Card} from './card.js'
+import {Card} from './Сard.js'
 import {initialCards} from './initial-cards.js'
 import {validationConfig, FormValidator} from './FormValidator.js'
 const editButton = document.querySelector('.profile__button-edit');
 const addButton = document.querySelector('.profile__button-add');
-const popUpProfile = document.querySelector('.popup_content_profile');
-const popUpCard = document.querySelector('.popup_content_card');
-const popupImg = document.querySelector('.popup-card');
-const closeButtonProfile = document.querySelector('.popup__button-close_profile');
-const closeButtonCard = document.querySelector('.popup__button-close_card');
+const popUpContentProfile = document.querySelector('.popup_content_profile');
+const popUpContentCard = document.querySelector('.popup_content_card');
 const formElementProfile = document.querySelector('.popup__form_profile');
 const formElementCard = document.querySelector('.popup__form_card');
 const nameInput = formElementProfile.querySelector('.popup__input_content_name');
@@ -17,31 +14,44 @@ const profileSubline = document.querySelector('.profile__name-subline');
 const cardTitle = document.querySelector('.popup__input_content_title');
 const cardLink = document.querySelector('.popup__input_content_link');
 const cardsContainer = document.querySelector('.gallery__cards');
-const buttonImgClose = document.querySelector('.popup-card__button');
+const popUpCardTitle = document.querySelector('.popup-card__title');
+const popUpCardImage = document.querySelector('.popup-card__image');
+const popUpCard = document.querySelector('.popup-card');
 const EscCode = 'Escape';
-const popUp = Array.from(document.querySelectorAll('.popup'));
+const popUps = Array.from(document.querySelectorAll('.popup'));
 
 //функция открытия попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape)
 };
+
 //функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
- document.removeEventListener('keydown', popupCloseEscape);
+ document.removeEventListener('keydown', closeByEscape);
 }
+
 //функция открытия окна редактирования информации в профайле
-function modPopupProfile () {
+function openProfilePopup () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileSubline.textContent;
-  openPopup(popUpProfile);
+  openPopup(popUpContentProfile);
 }
+
 //функция отправки формы данных изменяемых в профайле
 function submitProfileForm (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileSubline.textContent = jobInput.value;
-  closePopup(popUpProfile);
+  closePopup(popUpContentProfile);
+}
+
+//функция создания карточки
+function createCard (name, link) {
+  const card = new Card (name, link, '.card-template', handleCardClick);
+  const cardElement = card.generateCard ();
+  return cardElement
 }
 
 //функция добавления карточки на страницу
@@ -51,67 +61,72 @@ function renderCard(container, item) {
 
 //добавляем 6 карточек из массива при загрузке странцы создаем класс Card каждой карточки
 initialCards.forEach((element) => {
-  const card = new Card (element.name, element.link, '.card-template');
-  const cardItem = card.generateCard ();
+  const cardItem = createCard(element.name, element.link);
   renderCard(cardsContainer, cardItem);
 });
 
-//функция отправки формы для создания новой карточки
+//функция отправки формы для создания новой карточки на странице
 function submitCardForm (evt) {
   evt.preventDefault();
-  const card = new Card (cardTitle.value, cardLink.value, '.card-template');
-  const cardItem = card.generateCard()
+  const cardItem = createCard(cardTitle.value, cardLink.value)
   renderCard(cardsContainer, cardItem);
-  closePopup(popUpCard);
+  closePopup(popUpContentCard);
   formElementCard.reset();
 }
 
-//функция закрытия попапа по клику на оверлей
-function popupCloseOverlay() {
-  popUp.forEach((popupElement) => {
-    popupElement.addEventListener('mousedown', (evt) => {
-      if (evt.target === evt.currentTarget) {
-        closePopup(popupElement);
-      }
-    })
-  })
-};
+//функция открытия попапа просмотра картинки (функцию передаем в конструктор класса Card)
+function handleCardClick(name, link) {
+  popUpCardTitle.textContent = name;
+  popUpCardImage.src = link;
+  popUpCardImage.alt = name;
+  openPopup(popUpCard);
+}
 
 //функция закрытия попапа по нажатию Escape
-function popupCloseEscape() {
-  popUp.forEach((popupElement) => {
-    document.addEventListener('keydown', (evt) => {
-      if (evt.key === EscCode) {
-        closePopup(popupElement);
-      }
-    })
-  })
+function closeByEscape (evt) {
+  if (evt.key === EscCode) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 };
 
-editButton.addEventListener('click', () => {
-  modPopupProfile();
-  //создаем класс валидации нужной формы и вызываем публичную функцию валидации
-  //(функция валидации включает функцию сброса валидации)
-  const validateProfile = new FormValidator (validationConfig, '.popup__form_profile');
-  validateProfile.enableValidation();
+//создаем класс валидации нужной формы и вызываем публичную функцию валидации
+const validateProfile = new FormValidator (validationConfig, '.popup__form_profile');
+validateProfile.enableValidation();
+//создаем класс валидации нужной формы и вызываем публичную функцию валидации
+const validateCard = new FormValidator (validationConfig, '.popup__form_card');
+validateCard.enableValidation();
 
+//слушатели кнопок открытия попапов
+editButton.addEventListener('click', () => {
+  openProfilePopup();
+  //вызываем функцию сброса валидации
+  validateProfile.resetValidation();
 });
 addButton.addEventListener('click', () => {
-  openPopup(popUpCard);
-   //создаем класс валидации нужной формы и вызываем публичную функцию валидации
-  //(функция валидации включает функцию сброса валидации)
-  const validateCard = new FormValidator (validationConfig, '.popup__form_card');
-  validateCard.enableValidation();
+  openPopup(popUpContentCard);
+  //вызываем функцию сброса валидации
+  validateCard.resetValidation();
   formElementCard.reset();
 });
-closeButtonProfile.addEventListener('click', () => closePopup(popUpProfile));
-closeButtonCard.addEventListener('click', () => closePopup(popUpCard));
+
+//слушатели отправки форм
 formElementProfile.addEventListener('submit', submitProfileForm);
 formElementCard.addEventListener('submit', submitCardForm);
-buttonImgClose.addEventListener('click', () => closePopup(popupImg));
 
-popupCloseOverlay();
-popupCloseEscape();
+// установка слушателя функции закрытия попапа (по нажатию на оверлей и по нажатию на кнопку закрытия), для всех эелементов popup
+popUps.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')) {
+          closePopup(popup)
+      }
+      if (evt.target.classList.contains('popup__button-close')) {
+        closePopup(popup)
+      }
+  })
+});
+
+
 
 
 
