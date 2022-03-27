@@ -1,13 +1,4 @@
-export const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button-save_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}
-
-export class FormValidator {
+export default class FormValidator {
   constructor (config, formElement) {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
@@ -15,7 +6,7 @@ export class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-    this._formElement = document.querySelector(formElement);
+    this._formElement = formElement;
     this._button = this._formElement.querySelector(this._submitButtonSelector);
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
@@ -43,11 +34,11 @@ export class FormValidator {
   };
   //функция валидации каждого поля ввода в форме
   _setEventListeners () {
-    this._toggleButtonState (this._inputList)
+    this._toggleButtonState ()
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input',  () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState (this._inputList);
+        this._toggleButtonState ();
       })
     });
   };
@@ -67,7 +58,7 @@ export class FormValidator {
   }
   //Функция делающая кнопку отправки не активной если хотя бы одно из полей формы не валидно
   _toggleButtonState ()  {
-    if (this._hasInvalidInput(this._inputList) === true) {
+    if (this._hasInvalidInput() === true) {
       this._button.classList.add(this._inactiveButtonClass);
       this._button.setAttribute('disabled', '');
     }

@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="site">
@@ -16,7 +15,7 @@
     <main class="content">
       <section class="profile">
         <div class="profile__info">
-          <img src="images/avatar.jpg" class="profile__avatar" alt="Аватар пользователя">
+          <img src="<%=require('./images/avatar.jpg')%>" class="profile__avatar" alt="Аватар пользователя">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__name-subline">Исследователь океана</p>
           <button type="button" class="profile__button-edit button-effect"></button>
@@ -40,9 +39,9 @@
         <button type="button" class="popup__button-close popup__button-close_profile button-effect"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form novalidate name="popup-profile" class="popup__form popup__form_profile">
-          <input type="text" id="input-name" minlength="2" maxlength="40" name="input-name" required placeholder="Имя" class="popup__input popup__input_profile popup__input_content_name">
+          <input type="text" id="input-name" minlength="2" maxlength="40" name="inputName" required placeholder="Имя" class="popup__input popup__input_profile popup__input_content_name">
           <span class="popup__error input-name-error"></span>
-          <input type="text" id="input-job" minlength="2" maxlength="200" name="input-job" required placeholder="Род деятельности" class="popup__input popup__input_profile  popup__input_content_job">
+          <input type="text" id="input-job" minlength="2" maxlength="200" name="inputJob" required placeholder="Род деятельности" class="popup__input popup__input_profile  popup__input_content_job">
           <span class="popup__error  input-job-error"></span>
           <button type="submit" class="popup__button-save popup__button-save_profile">Сохранить</button>
         </form>
@@ -54,9 +53,9 @@
         <button type="button" class="popup__button-close popup__button-close_card button-effect"></button>
         <h2 class="popup__title">Новое место</h2>
         <form novalidate name="popup-card" class="popup__form popup__form_card">
-          <input type="text" id="input-title" minlength="2" maxlength="30" name="input-title" required placeholder="Название" class="popup__input popup__input_card popup__input_content_title">
+          <input type="text" id="input-title" minlength="2" maxlength="30" name="inputTitle" required placeholder="Название" class="popup__input popup__input_card popup__input_content_title">
           <span class="popup__error input-title-error"></span>
-          <input type="url" id="input-link" name="input-link" required placeholder="Ссылка на картинку" class="popup__input popup__input_card popup__input_content_link">
+          <input type="url" id="input-link" name="inputLink" required placeholder="Ссылка на картинку" class="popup__input popup__input_card popup__input_content_link">
           <span class="popup__error input-link-error"></span>
           <button type="submit" class="popup__button-save popup__button-save_card">Сохранить</button>
         </form>
@@ -83,9 +82,5 @@
         </div>
       </li>
     </template>
-  <script type="module" src="js/initial-cards.js"></script>
-  <script type="module" src="js/index.js"></script>
-  <script type="module" src="js/Сard.js"></script>
-  <script type="module" src="js/FormValidator.js"></script>
 </body>
 </html>

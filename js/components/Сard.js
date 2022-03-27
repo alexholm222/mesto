@@ -1,9 +1,9 @@
 //класс для создания карточки
-export class Card {
+export default class Card {
   //конструктор принимает в себя данные карточки
-  constructor (name, link, cardSelector, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  constructor (data, cardSelector, handleCardClick) {
+    this._name = data.name;
+    this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -19,7 +19,7 @@ export class Card {
   }
 
   //публичный метод, добавляет данные в разметку
-  generateCard () {
+  generateCard() {
     //записали разметку в приватное поле _element
     this._element = this._getTemplate();
 
