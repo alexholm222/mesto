@@ -37,11 +37,11 @@ export const validationConfig = {
 
 export const editButton = document.querySelector('.profile__button-edit');
 export const addButton = document.querySelector('.profile__button-add');
-export const popUpContentProfile = document.querySelector('.popup_content_profile');
-export const popUpContentCard = document.querySelector('.popup_content_card');
-export const popUpContentImg = document.querySelector('.popup-card');
+export const popUpContentProfile = '.popup_content_profile';
+export const popUpContentCard = '.popup_content_card';
+export const popUpContentImg = '.popup-card';
 export const nameInput = document.querySelector('.popup__input_content_name');
 export const jobInput = document.querySelector('.popup__input_content_job');
-export const profileName = document.querySelector('.profile__name');
-export const profileSubline = document.querySelector('.profile__name-subline');
+export const profileName = '.profile__name';
+export const profileSubline = '.profile__name-subline';
 export const cardsContainer = '.gallery__cards';
