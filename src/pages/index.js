@@ -1,4 +1,4 @@
-import '../../pages/index.css'
+import './index.css'
 import Card from '../components/Сard.js'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -21,7 +21,6 @@ const cardList = new Section (
   {
     items: initialCards,
     renderer: (item) => {
-      createCard(item);
       cardList.addItem(createCard(item));
     }
   }, cardsContainer);
@@ -80,14 +79,14 @@ enableValidation(validationConfig);
 editButton.addEventListener('click', () => {
   const profileInfo = userInfo.getUserInfo();
   nameInput.value = profileInfo.name;
-  jobInput.value = profileInfo.info
-  newProfile.open()
-  formValidators['popup-profile'].resetValidation()
+  jobInput.value = profileInfo.info;
+  formValidators['popup-profile'].resetValidation();
+  newProfile.open();
 });
 
 addButton.addEventListener('click', () => {
+  formValidators['popup-card'].resetValidation();
   formCard.open();
-  formValidators['popup-card'].resetValidation()
 });
 
 
