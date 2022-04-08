@@ -29,14 +29,15 @@ export const initialCards = [
 export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button-save_disabled',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 }
 
 export const editButton = document.querySelector('.profile__button-edit');
 export const addButton = document.querySelector('.profile__button-add');
+export const avatarButton = document.querySelector('.profile__overlay');
 export const popUpContentProfile = '.popup_content_profile';
 export const popUpContentCard = '.popup_content_card';
 export const popUpContentImg = '.popup-card';
@@ -45,3 +46,6 @@ export const jobInput = document.querySelector('.popup__input_content_job');
 export const profileName = '.profile__name';
 export const profileSubline = '.profile__name-subline';
 export const cardsContainer = '.gallery__cards';
+export const avatar = document.querySelector('.profile__avatar');
+export const popupDelete = '.popup_content_delete';
+export const popupAvatar = '.popup_content_avatar';
