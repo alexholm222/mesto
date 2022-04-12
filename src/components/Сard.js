@@ -1,12 +1,12 @@
 //класс для создания карточки
 export default class Card {
   //конструктор принимает в себя данные карточки
-  constructor (data, cardSelector, userId, handleCardClick, handleDeleteClick, handleLikeClick, handleDeleteLike) {
+  constructor (data, cardSelector, userIdSelector, handleCardClick, handleDeleteClick, handleLikeClick, handleDeleteLike) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._cardSelector = cardSelector;
-    this._userId = userId;
+    this._userId = document.querySelector(userIdSelector).textContent;
     this._ownerId = data.owner._id;
     this._cardId = data._id;
     this._handleCardClick = handleCardClick;
@@ -33,16 +33,15 @@ export default class Card {
     this._cardImage = this._element.querySelector('.card__image');
     this._cardLike = this._element.querySelector('.card__like');
     this._cardDelete = this._element.querySelector('.card__delete');
+    this._likesCounter = this._element.querySelector('.card__counter-like');
     if(this._ownerId !== this._userId) {
       this._cardDelete.classList.add('card__delete_hidden')
     }
-    let likesArr = [];
-    this._likes.forEach((obj) =>{
-      likesArr.push(obj._id);
-    })
-    if (likesArr.includes(this._userId)) {
-      this._cardLike.classList.add('card__like_active');
-    }
+     this._likes.forEach((obj) => {
+       if(obj._id === this._userId) {
+        this._cardLike.classList.add('card__like_active');
+       }
+     })
     //добавили слушатели в функцию создания карточки
     this._setEventListeners();
     this.setLikes(this._likes)
@@ -80,8 +79,7 @@ export default class Card {
 
   //функция счетчик лайков
   setLikes(like) {
-    const likesCounter = this._element.querySelector('.card__counter-like');
-    likesCounter.textContent = like.length;
+    this._likesCounter.textContent = like.length;
   }
 
   // функция удаления карточки

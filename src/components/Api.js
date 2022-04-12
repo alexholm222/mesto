@@ -7,26 +7,14 @@ class Api {
     return fetch(`${this._options.baseUrl}/users/me`, {
       headers: this._options.headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-         return Promise.reject(`Ошибка: ${res.status}`)
-        }
-      })
+    .then(this._checkResponse)
   }
 
   getInitialCards() {
     return fetch(`${this._options.baseUrl}/cards`, {
       headers: this._options.headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-         return Promise.reject(`Ошибка: ${res.status}`)
-        }
-      })
+    .then(this._checkResponse)
   }
 
   submitUserInformation(name, about) {
@@ -38,13 +26,7 @@ class Api {
         about: about
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-         return Promise.reject(`Ошибка: ${res.status}`)
-        }
-      })
+    .then(this._checkResponse)
   }
 
   submitCards(card) {
@@ -56,52 +38,28 @@ class Api {
         link: card.link
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-         return Promise.reject(`Ошибка: ${res.status}`)
-        }
-      })
+    .then(this._checkResponse)
   }
 
   deleteCard(id) {return fetch(`${this._options.baseUrl}/cards/${id}`, {
     method: 'DELETE',
     headers: this._options.headers
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } else {
-       return Promise.reject(`Ошибка: ${res.status}`)
-      }
-    })
+  .then(this._checkResponse)
   }
 
   LikeCard(id) {return fetch(`${this._options.baseUrl}/cards/${id}/likes `, {
     method: 'PUT',
     headers: this._options.headers,
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } else {
-       return Promise.reject(`Ошибка: ${res.status}`)
-      }
-    })
+  .then(this._checkResponse)
   }
 
   deleteLikeCard(id) {return fetch(`${this._options.baseUrl}/cards/${id}/likes `, {
     method: 'DELETE',
     headers: this._options.headers
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } else {
-       return Promise.reject(`Ошибка: ${res.status}`)
-      }
-    })
+  .then(this._checkResponse)
   }
 
   submitUserAvatar(avatar) {
@@ -112,15 +70,16 @@ class Api {
         avatar: avatar
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-         return Promise.reject(`Ошибка: ${res.status}`)
-        }
-      })
+      .then(this._checkResponse)
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json()
+    } else {
+     return Promise.reject(`Ошибка: ${res.status}`)
+    }
+  }
 }
 
 export const api = new Api({
